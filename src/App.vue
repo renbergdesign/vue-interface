@@ -1,26 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+  <appointment-list :appointments="appointments" />
+    
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FontAwesomeIcon from "@fortawesome/vue-fontawesome";
+import AppointmentList from './components/AppointmentList.';
+import axios from "axios";
 
 export default {
-  name: 'App',
+  name: "App",
+  data: function () {
+    return {
+      title: "App Title",
+      appointments: []
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    FontAwesomeIcon,
+    AppointmentList
+  } ,
+  mounted(){
+    axios.get("./data/appointments.json")
+    .then(response => (this.appointments = response.data));
+    }
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
