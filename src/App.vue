@@ -6,8 +6,7 @@
 </template>
 
 <script>
-import FontAwesomeIcon from "@fortawesome/vue-fontawesome";
-import AppointmentList from './components/AppointmentList.';
+import AppointmentList from './components/AppointmentList';
 import axios from "axios";
 
 export default {
@@ -19,12 +18,11 @@ export default {
     };
   },
   components: {
-    FontAwesomeIcon,
     AppointmentList
   } ,
   mounted(){
-    axios.get("./data/appointments.json")
-    .then(response => (this.appointments = response.data));
+    axios.get("https://api.hubapi.com/crm/v3/objects/contacts/?archived=false&hapikey=eu1-5cdc-4349-440d-9891-838288ed6294")
+    .then(response => (this.appointments = response.data.results));
     }
 };
 </script>

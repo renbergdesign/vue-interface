@@ -1,13 +1,13 @@
 <template>
     <div v-for="(item, i) in appointments" v-bind:key="i">
-      <h4>{{item.petName}}</h4>
-      <p>{{item.aptNotes}}</p>
+      <h4>{{item.properties.firstname}}</h4>
+      <p>{{item.properties.email}}</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: "AppointmentList,
-        props: ["appointments"]"
+        name: "AppointmentList",
+        props: ["appointments"]
     };
 </script>
